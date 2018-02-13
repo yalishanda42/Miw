@@ -438,6 +438,9 @@ function scene:destroy( event )
 	-- e.g. remove display objects, remove touch listeners, save state, etc.
 	local sceneGroup = self.view
 
+	box:removeEventListener("touch", onDragBox)
+	Runtime:removeEventListener("collision", onCollision)
+
 	package.loaded[physics] = nil
 	physics = nil
 
