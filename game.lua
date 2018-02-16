@@ -66,8 +66,7 @@ end
 
 
 local function updateScore()
-	lifeTxtObj.text = life
-	scoreTxtObj.text = "Score:"..score
+		scoreTxtObj.text = "Score:"..score
 
 	if life <= 0 then
 		endGame()
@@ -75,6 +74,13 @@ local function updateScore()
 		lifeTxtObj:setFillColor(1, 0.1, 0.1)
 	elseif life > 3 then
 		lifeTxtObj:setFillColor(1)
+	end
+
+	if harderDifficulty then
+		lifeTxtObj.text = "xD"
+		lifeTxtObj:setFillColor(0,0,1)
+	else
+		lifeTxtObj.text = life
 	end
 
 	if score <= 0 then
@@ -109,7 +115,8 @@ local function addLife(amount)
 		life = life + amount
 		fadeChangeStatsLabel(lifeChangeTxt, amount)
 	else
-		lifeTxtObj.text = "?"
+		lifeTxtObj.text = "xD"
+		lifeTxtObj:setFillColor(0,0,1)
 	end
 end
 
@@ -202,7 +209,7 @@ local function onCollision(event)
 
 			if composer.getVariable("hasFoundSans") then
 				if obj.spriteName == "sans" then
-					addLife(-2) 
+					addLife(-2)
 				else
 					addScore(50) -- Genocide mode
 				end
@@ -239,7 +246,7 @@ local function onCollision(event)
 			else
 				addLife(-1) -- normal mode
 			end
-			 
+
 		else
 
 			if composer.getVariable("hasFoundSans") then
@@ -276,7 +283,8 @@ local function gameLoop()
 
 		gameLoopTimer._delay = timeBetweenSpawns --huehue
 
-		lifeTxtObj.text = "?"
+		lifeTxtObj.text = "xD"
+		lifeTxtObj:setFillColor(0,0,1)
 	end
 
 
